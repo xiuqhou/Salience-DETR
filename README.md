@@ -28,8 +28,8 @@ This repository is an official implementation of the Salience-DETR accepeted to 
 - **Salience supervision** benefits to capture **object contours** even with only bounding box annotations, for both defect detection and object detection tasks (right).
 
 <h3 align="center">
-    <a><img src="images/query_visualization.svg" width="335" id="id_1"></a>
-    <a><img src="images/salience_visualization.svg" width="462" id="id_2"></a>
+    <a id="id_1"><img src="images/query_visualization.svg" width="335"></a>
+    <a id="id_2"><img src="images/salience_visualization.svg" width="462"></a>
 </h3>
 
 ## Reference
