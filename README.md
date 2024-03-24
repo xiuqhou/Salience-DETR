@@ -276,7 +276,7 @@ If you find our work helpful for your research, please consider citing the follo
 ```bibtex
 @inproceedings{hou2024salience,
   title={Salience-DETR: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement},
-  author={Hou, Xiuquan and Liu, Meiqin and Zhang, Senlin and Wei, Ping and Chen, Badong}
+  author={Hou, Xiuquan and Liu, Meiqin and Zhang, Senlin and Wei, Ping and Chen, Badong},
   booktitle={CVPR},
   year={2024}
 }
