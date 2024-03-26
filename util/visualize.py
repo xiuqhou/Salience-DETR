@@ -100,10 +100,11 @@ def plot_bounding_boxes_on_image_cv2(
     assert classes is None or max(labels) <= len(classes) - 1, "#classes less than label index"
 
     # filter low confident predictions
-    keep = [s > show_conf for s in scores]
-    boxes = [b for b, k in zip(boxes, keep) if k == True]
-    labels = [l for l, k in zip(labels, keep) if k == True]
-    scores = [s for s, k in zip(scores, keep) if k == True]
+    if scores is not None:
+        keep = [s > show_conf for s in scores]
+        boxes = [b for b, k in zip(boxes, keep) if k == True]
+        labels = [l for l, k in zip(labels, keep) if k == True]
+        scores = [s for s, k in zip(scores, keep) if k == True]
 
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
@@ -214,25 +215,16 @@ def visualize_coco_bounding_boxes(
     classes = tuple(dataset.coco.cats.get(c, {"name": "none"})["name"] for c in cat_ids)
 
     def visualize_single_in_coco(image, output):
-        # filter low confidence predictions
-        if "scores" in output:
-            keep = output["scores"] > show_conf
-            scores = output["scores"][keep]
-        else:
-            keep = output["boxes"][:, 0] >= 0
-            scores = None
-        boxes = output["boxes"][keep]
-        labels = output["labels"][keep]
-
         # plot bounding boxes on image
         image = image.numpy().transpose(1, 2, 0)
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         image = plot_bounding_boxes_on_image_cv2(
             image=image,
-            boxes=boxes,
-            labels=labels,
-            scores=scores,
+            boxes=output["boxes"],
+            labels=output["labels"],
+            scores=output.get("scores", None),
             classes=classes,
+            show_conf=show_conf,
             font_scale=font_scale,
             box_thick=box_thick,
             fill_alpha=fill_alpha,

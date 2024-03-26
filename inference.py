@@ -102,9 +102,9 @@ def inference():
 
     with torch.inference_mode():
         predictions = []
-        for index, images in tqdm(enumerate(data_loader)):
+        for index, images in enumerate(tqdm(data_loader)):
             prediction = model(images)[0]
-
+            
             # change torch.Tensor to CPU
             for key in prediction:
                 prediction[key] = prediction[key].to("cpu", non_blocking=True)
@@ -119,24 +119,16 @@ def inference():
         classes = model.CLASSES
 
         def visualize_single_image(image_name, image, output):
-            if "scores" in output:
-                keep = output["scores"] > args.show_conf
-                scores = output["scores"][keep]
-            else:
-                keep = output["boxes"][:, 0] >= 0
-                scores = None
-            boxes = output["boxes"][keep]
-            labels = output["labels"][keep]
-
             # plot bounding boxes on image
             image = image.numpy().transpose(1, 2, 0)
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
             image = plot_bounding_boxes_on_image_cv2(
                 image=image,
-                boxes=boxes,
-                labels=labels,
-                scores=scores,
+                boxes=output["boxes"],
+                labels=output["labels"],
+                scores=output.get("scores", None),
                 classes=classes,
+                show_conf=args.show_conf,
                 font_scale=args.font_scale,
                 box_thick=args.box_thick,
                 fill_alpha=args.fill_alpha,
