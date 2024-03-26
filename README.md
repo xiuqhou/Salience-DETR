@@ -24,7 +24,7 @@ This repository is an official implementation of the Salience-DETR accepeted to 
 
 # News
 
-`2024-03`: We release pretrained weights on COCO 2017 for Salience-DETR with ResNet50 backbone.
+`2024-03`: We release code of Salience-DETR and pretrained weights on COCO 2017 for Salience-DETR with ResNet50 backbone.
 
 `2024-02`: Salience-DETR is accepted in CVPR2024, and code will be released in the repo. Welcome to your attention!
 
