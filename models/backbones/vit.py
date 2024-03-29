@@ -784,6 +784,7 @@ class VisionTransformerBackbone(BaseBackbone):
             image_size=224,
             num_layers=24,
             num_heads=16,
+            hidden_dim=1024,
             mlp_dim=4096,
             url=model_weights["vit_l_16"],
         ),
@@ -882,6 +883,9 @@ class VisionTransformerBackbone(BaseBackbone):
         # get parameters and instantiate backbone
         model_config = self.get_instantiate_config(self, VisionTransformer, arch, kwargs)
         default_weight = model_config.pop("url", None)
+        if "image_size" in model_config and "patch_size" in model_config:
+            divise = model_config["image_size"] / model_config["patch_size"]
+            model_config["image_size"] = math.ceil(divise) * model_config["patch_size"]
         vit = instantiate(model_config)
 
         # load state dict
