@@ -3,10 +3,11 @@
 
 By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.google.com/citations?user=T07OWMkAAAAJ&hl=zh-CN&oi=ao), Senlin Zhang, [Ping Wei](https://scholar.google.com/citations?user=1OQBtdcAAAAJ&hl=zh-CN&oi=ao), [Badong Chen](https://scholar.google.com/citations?user=mq6tPX4AAAAJ&hl=zh-CN&oi=ao).
 
-<div align="center">
-    <img src="https://img.shields.io/github/license/xiuqhou/Salience-DETR.svg?color=blue" alt="license-Apache2.0">
-    <img src="https://img.shields.io/github/stars/xiuqhou/Salience-DETR" alt="Github-stars">
-</div>
+[![arXiv](https://img.shields.io/badge/arXiv-2403.16131-b31b1b.svg)](https://arxiv.org/abs/2403.16131)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/xiuqhou/Salience-DETR/graphs/commit-activity) 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com) 
+[![GitHub license](https://img.shields.io/github/license/xiuqhou/Salience-DETR.svg?color=blue)](https://github.com/xiuqhou/Salience-DETR/blob/master/LICENSE)
+![GitHub stars](https://img.shields.io/github/stars/xiuqhou/Salience-DETR)
 
 This repository is an official implementation of the Salience-DETR accepeted to **CVPR 2024** (score **553**).
 
@@ -256,7 +257,7 @@ To train your own datasets, there are some things to do before training:
 
 ## 📥Export an ONNX model
 
-For advanced users who want to deploy our model, we propose a script to export an ONNX file.
+For advanced users who want to deploy our model, we provide a script to export an ONNX file.
 
 ```shell
 python tools/pytorch2onnx.py \
@@ -271,7 +272,7 @@ For inference using the ONNX file, see `ONNXDetector` in [`tools/pytorch2onnx.py
 
 ## Reference
 
-If you find our work helpful for your research, please consider citing the following BibTeX entry.
+If you find our work helpful for your research, please consider citing the following BibTeX entry or give us a star ⭐.
 
 ```bibtex
 @inproceedings{hou2024salience,
