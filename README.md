@@ -5,7 +5,6 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
 
 [![Papers with code](https://img.shields.io/endpoint?url=https%3A%2F%2Fpaperswithcode.com%2Fbadge%2Fsalience-detr-enhancing-detection-transformer-1%2Fobject-detection-on-coco-2017-val)](https://paperswithcode.com/sota/object-detection-on-coco-2017-val)
 [![arXiv](https://img.shields.io/badge/arXiv-2403.16131-b31b1b.svg)](https://arxiv.org/abs/2403.16131)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/xiuqhou/Salience-DETR/graphs/commit-activity) 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com) 
 [![GitHub license](https://img.shields.io/github/license/xiuqhou/Salience-DETR.svg?color=blue)](https://github.com/xiuqhou/Salience-DETR/blob/master/LICENSE)
 ![GitHub stars](https://img.shields.io/github/stars/xiuqhou/Salience-DETR)
