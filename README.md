@@ -10,6 +10,7 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com) 
 [![GitHub license](https://img.shields.io/github/license/xiuqhou/Salience-DETR.svg?color=blue)](https://github.com/xiuqhou/Salience-DETR/blob/master/LICENSE)
 ![GitHub stars](https://img.shields.io/github/stars/xiuqhou/Salience-DETR)
+![GitHub forks](https://img.shields.io/github/forks/xiuqhou/Salience-DETR)
 
 This repository is an official implementation of the Salience-DETR accepeted to **CVPR 2024** (score **553**).
 
