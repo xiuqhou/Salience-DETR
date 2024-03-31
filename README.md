@@ -13,23 +13,17 @@ This repository is an official implementation of the Salience-DETR accepeted to 
 
 ## ✨Highlights: 
 
+1. We offer a deepened analysis for [scale bias and query redundancy](#id_1) issues of two-stage DETR-like methods.
+2. We present a hierarchical filtering mechanism to reduce the computational complexity under salience supervision. The proposed salience supervision benefits to capture [fine-grained object contours](#id_2) even with bounding box annotations.
+4. Salience-DETR achieves **+4.0%**, **+0.2%**, and **+4.4%** AP on three challenging defect detection tasks, and comparable performance (**49.2** AP) with about only **70\%** FLOPs on COCO 2017.
+
 <div align="center">
     <img src="images/Salience-DETR.svg">
 </div>
 
-1. We offer a deepened analysis for [scale bias and query redundancy](#id_1) issues of two-stage DETR-like methods.
-2. We present a query filtering mechanism to reduce the computational complexity by selectively encoding the most informative queries in each encoder layer and each feature level.
-3. The proposed salience supervision benefits to capture [fine-grained object contours](#id_2) even with bounding box annotations.
-4. Salience-DETR achieves **+4.0%**, **+0.2%**, and **+4.4%** AP on three challenging defect detection tasks, and comparable performance with about only **70\%** FLOPs on COCO 2017.
-5. Our model achieves **49.2** AP with a ResNet-50 backbone under 1x training.
+<details>
 
-# News
-
-`2024-03`: We release code of Salience-DETR and pretrained weights on COCO 2017 for Salience-DETR with ResNet50 backbone.
-
-`2024-02`: Salience-DETR is accepted in CVPR2024, and code will be released in the repo. Welcome to your attention!
-
-## 🔎Visualization:
+<summary>🔎Visualization</summary>
 
 - Queries in the two-stage selection of existing DETR-like methods is usually **redundant** and have **scale bias** (left).
 - **Salience supervision** benefits to capture **object contours** even with only bounding box annotations, for both defect detection and object detection tasks (right).
@@ -39,9 +33,16 @@ This repository is an official implementation of the Salience-DETR accepeted to 
     <a id="id_2"><img src="images/salience_visualization.svg" width="462"></a>
 </h3>
 
-## 🔧Installation
+</details>
 
-The implementation codes are developed and tested under `python=3.10, pytorch=1.12, torchvision=0.13` on `Ubuntu LTS 20.04`. Other versions might also work properly.
+# News
+
+`2024-03`: We release code of Salience-DETR and pretrained weights on COCO 2017 for Salience-DETR with ResNet50 backbone.
+
+`2024-02`: Salience-DETR is accepted in CVPR2024, and code will be released in the repo. Welcome to your attention!
+
+
+## 🔧Installation
 
 1. Clone the repository locally:
 
@@ -57,10 +58,9 @@ The implementation codes are developed and tested under `python=3.10, pytorch=1.
     conda activate salience_detr
     ```
 
-3. Install PyTorch and Torchvision following the instruction on [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/). The code requires `python>=3.8, torch>=1.11.0, torchvision>=0.12.0`. For example:
+3. Install PyTorch and Torchvision following the instruction on [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/). The code requires `python>=3.8, torch>=1.11.0, torchvision>=0.12.0`.
     
     ```shell
-    # just an example, should be installed according to your CUDA version
     conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
     ```
 
@@ -74,7 +74,7 @@ That's all, you don't need to compile CUDA operators mannually since we load it 
 
 ## 📁Prepare Dataset
 
-Please download [COCO 2017](https://cocodataset.org/) or prepare your own datasets into `data/`, and organize them as following:
+Please download [COCO 2017](https://cocodataset.org/) or prepare your own datasets into `data/`, and organize them as following. You can use [`tools/visualize_datasets.py`](tools/visualize_datasets.py) to visualize the dataset annotations to verify its correctness.
 
 ```shell
 coco/
@@ -85,11 +85,9 @@ coco/
   	└── instances_val2017.json
 ```
 
-You can use [`tools/visualize_datasets.py`](tools/visualize_datasets.py) to visualize the dataset annotations to verify its correctness.
-
 <details>
 
-<summary>A simple example</summary>
+<summary>Example for visualization</summary>
 
 ```shell
 python tools/visualize_datasets.py \
@@ -102,7 +100,14 @@ python tools/visualize_datasets.py \
 
 ## 📚︎Train a model
 
-First, open [`configs/train_config.py`](configs/train_config.py) and modify the `coco_path`, `model_path`, `num_epochs` and other necessary parameters for training, 
+We use `accelerate` package to natively handle multi GPUs, use `CUDA_VISIBLE_DEVICES` to specify GPU/GPUs. If not specified, the script will use all available GPUs on the node to train.
+
+```shell
+CUDA_VISIBLE_DEVICES=0 accelerate launch main.py    # train with 1 GPU
+CUDA_VISIBLE_DEVICES=0,1 accelerate launch main.py  # train with 2 GPUs
+```
+
+ Before start training, modify parameters in [`configs/train_config.py`](configs/train_config.py). 
 
 <details>
 
@@ -159,15 +164,6 @@ param_dicts = param_dict.finetune_backbone_and_linear_projection(lr=learning_rat
 ```
 </details>
 
-We use `accelerate` package to natively handle multi GPUs, so training and distributed training use the same command. You just need to specify which GPU/GPUs to use through `CUDA_VISIBLE_DEVICES`
-
-```shell
-CUDA_VISIBLE_DEVICES=0 accelerate launch main.py    # train with 1 GPU
-CUDA_VISIBLE_DEVICES=0,1 accelerate launch main.py  # train with 2 GPUs
-```
-
-If not specify `CUDA_VISIBLE_DEVICES`, the script will use all available GPUs on the node to train.
-
 ## 📈Evaluation/Test
 
 To evaluate a model with one or more GPUs, specify `CUDA_VISIBLE_DEVICES`, `dataset`, `model` and `checkpoint`.
@@ -198,6 +194,10 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch test.py
 
 </details>
 
+<details>
+
+<summary>Evaluate a json result file</summary>
+
 To evaluate the json result file obtained above, specify the `--result` but not specify `--model`.
 
 ```shell
@@ -207,6 +207,8 @@ CUDA_VISIBLE_DEVICES=0 accelerate launch test.py --coco-path /path/to/coco --res
 Optional parameters, see [test.py](test.py) for full parameters:
 
 - `--show-dir`: path to save detection visualization results.
+
+</details>
 
 ## ▶︎Inference
 
