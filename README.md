@@ -1,3 +1,5 @@
+English | [简体中文](README_cn.md)
+
 **Salience-DETR**: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement  
 ===
 
@@ -35,12 +37,11 @@ This repository is an official implementation of the Salience-DETR accepeted to 
 
 </details>
 
-# News
+## News
 
 `2024-03`: We release code of Salience-DETR and pretrained weights on COCO 2017 for Salience-DETR with ResNet50 backbone.
 
 `2024-02`: Salience-DETR is accepted in CVPR2024, and code will be released in the repo. Welcome to your attention!
-
 
 ## 🔧Installation
 
@@ -107,7 +108,7 @@ CUDA_VISIBLE_DEVICES=0 accelerate launch main.py    # train with 1 GPU
 CUDA_VISIBLE_DEVICES=0,1 accelerate launch main.py  # train with 2 GPUs
 ```
 
- Before start training, modify parameters in [`configs/train_config.py`](configs/train_config.py). 
+Before start training, modify parameters in [`configs/train_config.py`](configs/train_config.py). 
 
 <details>
 
@@ -181,7 +182,7 @@ Optional parameters are as follows, see [test.py](test.py) for full parameters:
 
 <summary>An example for evaluation</summary>
 
-to evaluate `salience_detr_resnet50_800_1333` on `coco` using 8 GPUs, save predictions to `result.json` and visualize results to `visualization/`:
+To evaluate `salience_detr_resnet50_800_1333` on `coco` using 8 GPUs, save predictions to `result.json` and visualize results to `visualization/`:
 
 ```shell
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch test.py 
@@ -212,7 +213,7 @@ Optional parameters, see [test.py](test.py) for full parameters:
 
 ## ▶︎Inference
 
- Use [`inference.py`](inference.py) to perform inference on images. You should specify the image directory using `--image-dir`.
+Use [`inference.py`](inference.py) to perform inference on images. You should specify the image directory using `--image-dir`.
 
 ```shell
 python inference.py --image-dir /path/to/images --model-config /path/to/model.py --checkpoint /path/to/checkpoint.pth --show-dir /path/to/dir
