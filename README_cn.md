@@ -236,7 +236,7 @@ python inference.py \
 
 </details>
 
-See [`inference.ipynb`](inference.ipynb) for inference on single image and visualization.
+或使用 [`inference.ipynb`](inference.ipynb) 进行单张图片的推理和可视化。
 
 ## 🔁评估模型速度、显存和参数
 
