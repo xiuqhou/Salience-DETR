@@ -40,9 +40,11 @@ This repository is an official implementation of the Salience-DETR accepeted to 
 
 ## News
 
-`2024-03`: We release code of Salience-DETR and pretrained weights on COCO 2017 for Salience-DETR with ResNet50 backbone.
+`2024-04-01`: Our Salience-DETR with Swin-L backbone achieves **56.5** AP on COCO 2017 (12epoch). The model [**config**](https://github.com/xiuqhou/Salience-DETR/blob/main/configs/salience_detr/salience_detr_swin_l_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth) are available.
 
-`2024-02`: Salience-DETR is accepted in CVPR2024, and code will be released in the repo. Welcome to your attention!
+`2024-03-26`: We release code of Salience-DETR and pretrained weights on COCO 2017 for Salience-DETR with ResNet50 backbone.
+
+`2024-02-29`: Salience-DETR is accepted in CVPR2024, and code will be released in the repo. Welcome to your attention!
 
 ## Model Zoo
 

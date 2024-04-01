@@ -40,10 +40,20 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
 
 ## 更新动态
 
+`2024-04-01`: 使用Swin-L作为主干网，Salience-DETR在COCO 2017数据集上取得了 **56.5** AP (训练12轮)。 模型 [**配置**](https://github.com/xiuqhou/Salience-DETR/blob/main/configs/salience_detr/salience_detr_swin_l_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth) 已发布.
+
 `2024-03`: 我们发布了Salience-DETR的代码和在COCO 2017上使用ResNet50作为主干网络的预训练权重。
 
 `2024-02`: Salience-DETR被CVPR2024接受，代码将在本仓库发布。欢迎关注！
 
+## 模型库
+
+在被 **CVPR 2024** 接受以后, 我们又在多种设置下重新训练了以 **ResNet50** 和 **Swin-L** 作为主干网的 **Salience-DETR** 。我们提供了相应的 [**COCO 2017**](https://cocodataset.org/#home) 数据集的配置和权重。
+
+| 模型          | 主干网   | 训练轮数 | AP@50:95 | AP@50 | AP@75 | AP$_S$ | AP$_M$ | AP$_L$ |                                                                                                                        下载                                                                                                                         |
+| ------------- | -------- | :------: | :------: | :---: | :---: | :----: | :----: | :----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Salience-DETR | ResNet50 |    12    |   50.0   | 67.7  | 54.2  |  33.3  |  54.4  |  64.4  | [配置](https://github.com/xiuqhou/Salience-DETR/blob/main/configs/salience_detr/salience_detr_resnet50_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth) |
+| Salience-DETR | Swin-L   |    12    |   56.5   | 75.0  | 61.5  |  40.2  |  61.2  |  72.8  |   [配置](https://github.com/xiuqhou/Salience-DETR/blob/main/configs/salience_detr/salience_detr_swin_l_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)   |
 
 ## 🔧安装步骤
 
