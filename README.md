@@ -44,6 +44,15 @@ This repository is an official implementation of the Salience-DETR accepeted to 
 
 `2024-02`: Salience-DETR is accepted in CVPR2024, and code will be released in the repo. Welcome to your attention!
 
+## Model Zoo
+
+Since accepted to **CVPR 2024**, we have re-trained **Salience-DETR** with **ResNet50** and **Swin-L** under various settings. We provide the corresponding configs and checkpoints for [**COCO 2017**](https://cocodataset.org/#home).
+
+| Model         | backbone | epoch | AP@50:95 | AP@50 | AP@75 | AP$_S$ | AP$_M$ | AP$_L$ |                                                                                                                      Download                                                                                                                       |
+| ------------- | -------- | :---: | :------: | :---: | :---: | :----: | :----: | :----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Salience-DETR | ResNet50 |  12   |   50.0   | 67.7  | 54.2  |  33.3  |  54.4  |  64.4  | [config](https://github.com/xiuqhou/Salience-DETR/blob/main/configs/salience_detr/salience_detr_resnet50_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth) |
+| Salience-DETR | Swin-L   |  12   |   56.5   | 75.0  | 61.5  |  40.2  |  61.2  |  72.8  |   [config](https://github.com/xiuqhou/Salience-DETR/blob/main/configs/salience_detr/salience_detr_swin_l_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)   |
+
 ## 🔧Installation
 
 1. Clone the repository locally:
@@ -189,7 +198,7 @@ To evaluate `salience_detr_resnet50_800_1333` on `coco` using 8 GPUs, save predi
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch test.py 
     --coco-path data/coco \
     --model-config configs/salience_detr/salience_detr_resnet50_800_1333.py \
-    --checkpoint checkpoints/salience_detr_resnet50_800_1333/train/2024-03-22-21_29_56/best_ap.pth \
+    --checkpoint https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth \
     --result result.json \
     --show-dir visualization/
 ```
