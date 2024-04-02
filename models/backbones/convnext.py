@@ -1,22 +1,14 @@
-import os
-import sys
 from functools import partial
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union
 
 import torch
 from torch import Tensor, nn
 from torch.nn import functional as F
-from torchvision.models.convnext import (
-    ConvNeXt_Base_Weights,
-    ConvNeXt_Large_Weights,
-    ConvNeXt_Small_Weights,
-    ConvNeXt_Tiny_Weights,
-)
 from torchvision.models.feature_extraction import create_feature_extractor
-from models.bricks.misc import Conv2dNormActivation, Permute
 from torchvision.ops.stochastic_depth import StochasticDepth
 
 from models.backbones.base_backbone import BaseBackbone
+from models.bricks.misc import Conv2dNormActivation, Permute
 from util.lazy_load import LazyCall as L
 from util.lazy_load import instantiate
 from util.utils import load_checkpoint
@@ -178,10 +170,10 @@ class ConvNeXtBackbone(BaseBackbone):
     # yapf: disable
     model_weights = {
         # The following weights are from torchvision
-        "conv_t": ConvNeXt_Tiny_Weights.IMAGENET1K_V1,
-        "conv_s": ConvNeXt_Small_Weights.IMAGENET1K_V1,
-        "conv_b": ConvNeXt_Base_Weights.IMAGENET1K_V1,
-        "conv_l": ConvNeXt_Large_Weights.IMAGENET1K_V1,
+        "conv_t": "https://download.pytorch.org/models/convnext_tiny-983f1562.pth",
+        "conv_s": "https://download.pytorch.org/models/convnext_small-0c510722.pth",
+        "conv_b": "https://download.pytorch.org/models/convnext_base-6075fbad.pth",
+        "conv_l": "https://download.pytorch.org/models/convnext_large-ea097f82.pth",
     }
 
     model_arch = {
