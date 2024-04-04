@@ -78,7 +78,9 @@ def test_on_dataset():
     accelerator = Accelerator(cpu=args.model_config is None)
     accelerate.utils.set_seed(args.seed, device_specific=False)
     torch.backends.cudnn.benchmark = False
-    torch.use_deterministic_algorithms(True, warn_only=True)
+    torch.backends.cudnn.deterministic = True
+    # deterministic in low version pytorch leads to RuntimeError
+    # torch.use_deterministic_algorithms(True, warn_only=True)
 
     # setup logger
     for logger_name in ["py.warnings", "accelerate", os.path.basename(os.getcwd())]:
