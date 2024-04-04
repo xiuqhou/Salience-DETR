@@ -113,7 +113,8 @@ def evaluate_acc(model, data_loader, epoch, accelerator=None):
         # get model predictions
         model_time = time.time()
         outputs = model(images)
-        outputs = [{k: v for k, v in t.items()} for t in outputs]
+        # non_blocking=True here causes incorrect performance
+        outputs = [{k: v.to("cpu") for k, v in t.items()} for t in outputs]
         model_time = time.time() - model_time
 
         # perform evaluation through COCO API
