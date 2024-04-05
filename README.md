@@ -50,10 +50,12 @@ This repository is an official implementation of the Salience-DETR accepeted to 
 
 Since accepted to **CVPR 2024**, we have re-trained **Salience-DETR** with **ResNet50** and **Swin-L** under various settings. We provide the corresponding configs and checkpoints for [**COCO 2017**](https://cocodataset.org/#home).
 
-| Model         | backbone | epoch | AP | AP@50 | AP@75 | AP$_S$ | AP$_M$ | AP$_L$ |                                                                                                                      Download                                                                                                                       |
-| ------------- | -------- | :---: | :------: | :---: | :---: | :----: | :----: | :----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Salience-DETR | ResNet50 |  12   |   50.0   | 67.7  | 54.2  |  33.3  |  54.4  |  64.4  | [config](https://github.com/xiuqhou/Salience-DETR/blob/main/configs/salience_detr/salience_detr_resnet50_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth) |
-| Salience-DETR | Swin-L   |  12   |   56.5   | 75.0  | 61.5  |  40.2  |  61.2  |  72.8  |   [config](https://github.com/xiuqhou/Salience-DETR/blob/main/configs/salience_detr/salience_detr_swin_l_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)   |
+| Model         | backbone            | epoch |  mAP  | AP<sub>50 | AP<sub>75 | AP<sub>S | AP<sub>M | AP<sub>L |                                                                                                                      Download                                                                                                                       |
+| ------------- | ------------------- | :---: | :---: | :-------: | :-------: | :------: | :------: | :------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Salience-DETR | ResNet50            |  12   | 50.0  |   67.7    |   54.2    |   33.3   |   54.4   |   64.4   | [config](https://github.com/xiuqhou/Salience-DETR/blob/main/configs/salience_detr/salience_detr_resnet50_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth) |
+| Salience-DETR | Swin-L<sub>(IN-22K) |  12   | 56.5  |   75.0    |   61.5    |   40.2   |   61.2   |   72.8   |   [config](https://github.com/xiuqhou/Salience-DETR/blob/main/configs/salience_detr/salience_detr_swin_l_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)   |
+
+
 
 ## 🔧Installation
 
