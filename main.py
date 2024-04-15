@@ -33,7 +33,9 @@ def parse_args():
         "between fp16 and bf16 (bfloat16). Bf16 requires PyTorch >= 1.10."
         "and an Nvidia Ampere GPU.",
     )
-    parser.add_argument("--accumulate-steps", type=int, default=1, help="Steps to accumulate gradients")
+    parser.add_argument(
+        "--accumulate-steps", type=int, default=1, help="Steps to accumulate gradients"
+    )
     parser.add_argument("--seed", type=int, help="Random seed")
     parser.add_argument("--use-deterministic-algorithms", action="store_true")
     dynamo_backend = ["no", "eager", "aot_eager", "inductor", "aot_ts_nvfuser", "nvprims_nvfuser"]
@@ -67,7 +69,8 @@ def train():
                 output_dir = os.path.join(cfg.resume_from_checkpoint, "checkpoints")
                 folders = [os.path.join(output_dir, folder) for folder in os.listdir(output_dir)]
                 folders.sort(
-                    key=lambda folder: list(map(int, re.findall(r"[\/]?([0-9]+)(?=[^\/]*$)", folder)))[0]
+                    key=lambda folder:
+                    list(map(int, re.findall(r"[\/]?([0-9]+)(?=[^\/]*$)", folder)))[0]
                 )
                 cfg.resume_from_checkpoint = folders[-1]
 
@@ -124,11 +127,6 @@ def train():
     optimizer = cfg.optimizer(cfg.param_dicts(model))
     lr_scheduler = cfg.lr_scheduler(optimizer)
 
-    # register dataset class information into the model, useful for inference
-    cat_ids = list(range(max(cfg.train_dataset.coco.cats.keys()) + 1))
-    classes = tuple(cfg.train_dataset.coco.cats.get(c, {"name": "none"})["name"] for c in cat_ids)
-    model.register_buffer("_classes_", torch.tensor(encode_labels(classes)))
-
     # log the configerations
     logger = get_logger(os.path.basename(os.getcwd()) + "." + __name__)
     # prepare for distributed training
@@ -146,7 +144,9 @@ def train():
             checkpoint = load_checkpoint(cfg.resume_from_checkpoint)
             checkpoint = checkpoint["model"] if "model" in checkpoint else checkpoint
             load_state_dict(accelerator.unwrap_model(model), checkpoint)
-            logger.info(f"load pretrained from {cfg.resume_from_checkpoint}, output_dir is {cfg.output_dir}")
+            logger.info(
+                f"load pretrained from {cfg.resume_from_checkpoint}, output_dir is {cfg.output_dir}"
+            )
         else:
             logger.warn("resume_from_checkpoint is not a path or a file, skip loading")
     else:
@@ -154,6 +154,11 @@ def train():
         logger.info("model parameters: {}".format(n_params))
         logger.info("optimizer: {}".format(optimizer))
         logger.info("lr_scheduler: {}".format(pprint.pformat(lr_scheduler.state_dict())))
+
+    # register dataset class information into the model, useful for inference
+    cat_ids = list(range(max(cfg.train_dataset.coco.cats.keys()) + 1))
+    classes = tuple(cfg.train_dataset.coco.cats.get(c, {"name": "none"})["name"] for c in cat_ids)
+    model.register_buffer("_classes_", torch.tensor(encode_labels(classes)))
 
     # save dataset name, useful for inference
     if accelerator.is_main_process:
