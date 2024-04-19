@@ -40,6 +40,8 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
 
 ## 更新动态
 
+`2024-04-19`: 以 [FocalNet-Large](https://github.com/microsoft/FocalNet) 作为主干网，Salience-DETR在COCO val2017上取得了 **56.8 AP**, [**配置**](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) 已更新!
+
 `2024-04-08`: 更新以ConvNeXt-L作为主干网、在COCO 2017数据集上训练12轮的Salience-DETR [**配置**](configs/salience_detr/salience_detr_convnext_l_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth).
 
 `2024-04-01`: 使用Swin-L作为主干网，Salience-DETR在COCO 2017数据集上取得了 **56.5** AP (训练12轮)。 模型 [**配置**](configs/salience_detr/salience_detr_swin_l_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth) 已发布.
@@ -54,11 +56,12 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
 
 ### 训练12轮
 
-| 模型          | 主干网              |  AP   | AP<sub>50 | AP<sub>75 | AP<sub>S | AP<sub>M | AP<sub>L |                                                                                             下载                                                                                             |
-| ------------- | ------------------- | :---: | :-------: | :-------: | :------: | :------: | :------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Salience-DETR | ResNet50            | 50.0  |   67.7    |   54.2    |   33.3   |   54.4   |   64.4   |   [配置](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth)   |
-| Salience-DETR | ConvNeXt-L          | 54.2  |   72.4    |   59.1    |   38.8   |   58.3   |   69.6   | [配置](configs/salience_detr/salience_detr_convnext_l_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth) |
-| Salience-DETR | Swin-L<sub>(IN-22K) | 56.5  |   75.0    |   61.5    |   40.2   |   61.2   |   72.8   |     [配置](configs/salience_detr/salience_detr_swin_l_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)     |
+| 模型          | 主干网                  |  AP   | AP<sub>50 | AP<sub>75 | AP<sub>S | AP<sub>M | AP<sub>L |                                                                                                     下载                                                                                                     |
+| ------------- | ----------------------- | :---: | :-------: | :-------: | :------: | :------: | :------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Salience-DETR | ResNet50                | 50.0  |   67.7    |   54.2    |   33.3   |   54.4   |   64.4   |           [配置](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth)           |
+| Salience-DETR | ConvNeXt-L              | 54.2  |   72.4    |   59.1    |   38.8   |   58.3   |   69.6   |         [配置](configs/salience_detr/salience_detr_convnext_l_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth)         |
+| Salience-DETR | Swin-L<sub>(IN-22K)     | 56.5  |   75.0    |   61.5    |   40.2   |   61.2   |   72.8   |             [配置](configs/salience_detr/salience_detr_swin_l_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)             |
+| Salience-DETR | FocalNet-L<sub>(IN-22K) | 56.8  |   74.7    |   61.7    |   40.1   |   61.1   |   74.3   | [配置](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) |
 
 ## 🔧安装步骤
 

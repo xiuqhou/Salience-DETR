@@ -40,6 +40,8 @@ This repository is an official implementation of the Salience-DETR accepeted to 
 
 ## News
 
+`2024-04-19`: Salience-DETR with [FocalNet-Large](https://github.com/microsoft/FocalNet) achieves **56.8 AP** on COCO val2017, [**config**](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) are available!
+
 `2024-04-08`: Update [**config**](configs/salience_detr/salience_detr_convnext_l_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth) of Salience-DETR with ConvNeXt-L backbone trained on COCO 2017 (12epoch).
 
 `2024-04-01`: Our Salience-DETR with Swin-L backbone achieves **56.5** AP on COCO 2017 (12epoch). The model [**config**](configs/salience_detr/salience_detr_swin_l_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth) are available.
@@ -54,11 +56,12 @@ Since accepted to **CVPR 2024**, we have re-trained **Salience-DETR** with **Res
 
 ### 12 epoch setting
 
-| Model         | backbone            |  mAP  | AP<sub>50 | AP<sub>75 | AP<sub>S | AP<sub>M | AP<sub>L |                                                                                               Download                                                                                               |
-| ------------- | ------------------- | :---: | :-------: | :-------: | :------: | :------: | :------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Salience-DETR | ResNet50            | 50.0  |   67.7    |   54.2    |   33.3   |   54.4   |   64.4   |   [config](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth)   |
-| Salience-DETR | ConvNeXt-L          | 54.2  |   72.4    |   59.1    |   38.8   |   58.3   |   69.6   | [config](configs/salience_detr/salience_detr_convnext_l_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth) |
-| Salience-DETR | Swin-L<sub>(IN-22K) | 56.5  |   75.0    |   61.5    |   40.2   |   61.2   |   72.8   |     [config](configs/salience_detr/salience_detr_swin_l_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)     |
+| Model         | backbone                |  mAP  | AP<sub>50 | AP<sub>75 | AP<sub>S | AP<sub>M | AP<sub>L |                                                                                                       Download                                                                                                       |
+| ------------- | ----------------------- | :---: | :-------: | :-------: | :------: | :------: | :------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Salience-DETR | ResNet50                | 50.0  |   67.7    |   54.2    |   33.3   |   54.4   |   64.4   |           [config](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth)           |
+| Salience-DETR | ConvNeXt-L              | 54.2  |   72.4    |   59.1    |   38.8   |   58.3   |   69.6   |         [config](configs/salience_detr/salience_detr_convnext_l_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth)         |
+| Salience-DETR | Swin-L<sub>(IN-22K)     | 56.5  |   75.0    |   61.5    |   40.2   |   61.2   |   72.8   |             [config](configs/salience_detr/salience_detr_swin_l_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)             |
+| Salience-DETR | FocalNet-L<sub>(IN-22K) | 56.8  |   74.7    |   61.7    |   40.1   |   61.1   |   74.3   | [config](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) |
 
 
 
