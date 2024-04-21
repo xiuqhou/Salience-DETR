@@ -127,13 +127,18 @@ def train():
     optimizer = cfg.optimizer(cfg.param_dicts(model))
     lr_scheduler = cfg.lr_scheduler(optimizer)
 
+    # register dataset class information into the model, useful for inference
+    cat_ids = list(range(max(cfg.train_dataset.coco.cats.keys()) + 1))
+    classes = tuple(cfg.train_dataset.coco.cats.get(c, {"name": "none"})["name"] for c in cat_ids)
+    model.register_buffer("_classes_", torch.tensor(encode_labels(classes)))
+
     # log the configerations
     logger = get_logger(os.path.basename(os.getcwd()) + "." + __name__)
     # prepare for distributed training
     model, optimizer, train_loader, test_loader, lr_scheduler = accelerator.prepare(
         model, optimizer, train_loader, test_loader, lr_scheduler
     )
-    if getattr(cfg, "resume_from_checkpoint", None):
+    if getattr(cfg, "resume_from_checkpoint", None) is not None:
         if os.path.isdir(str(cfg.resume_from_checkpoint)):
             accelerator.load_state(cfg.resume_from_checkpoint)
             path = os.path.basename(cfg.resume_from_checkpoint)
@@ -144,6 +149,8 @@ def train():
             checkpoint = load_checkpoint(cfg.resume_from_checkpoint)
             checkpoint = checkpoint["model"] if "model" in checkpoint else checkpoint
             load_state_dict(accelerator.unwrap_model(model), checkpoint)
+            # overwrite _classes_ in checkpoint with current datasets categories
+            model.register_buffer("_classes_", torch.tensor(encode_labels(classes)))
             logger.info(
                 f"load pretrained from {cfg.resume_from_checkpoint}, output_dir is {cfg.output_dir}"
             )
@@ -154,11 +161,6 @@ def train():
         logger.info("model parameters: {}".format(n_params))
         logger.info("optimizer: {}".format(optimizer))
         logger.info("lr_scheduler: {}".format(pprint.pformat(lr_scheduler.state_dict())))
-
-    # register dataset class information into the model, useful for inference
-    cat_ids = list(range(max(cfg.train_dataset.coco.cats.keys()) + 1))
-    classes = tuple(cfg.train_dataset.coco.cats.get(c, {"name": "none"})["name"] for c in cat_ids)
-    model.register_buffer("_classes_", torch.tensor(encode_labels(classes)))
 
     # save dataset name, useful for inference
     if accelerator.is_main_process:
