@@ -63,6 +63,11 @@ Since accepted to **CVPR 2024**, we have re-trained **Salience-DETR** with **Res
 | Salience-DETR | Swin-L<sub>(IN-22K)     | 56.5  |   75.0    |   61.5    |   40.2   |   61.2   |   72.8   |             [config](configs/salience_detr/salience_detr_swin_l_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)             |
 | Salience-DETR | FocalNet-L<sub>(IN-22K) | 56.8  |   74.7    |   61.7    |   40.1   |   61.1   |   74.3   | [config](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) |
 
+### 24 epoch setting
+
+| Model         | backbone |  mAP  | AP<sub>50 | AP<sub>75 | AP<sub>S | AP<sub>M | AP<sub>L |                                                                                             Download                                                                                             |
+| ------------- | -------- | :---: | :-------: | :-------: | :------: | :------: | :------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Salience-DETR | ResNet50 | 51.2  |   68.9    |   55.7    |   33.9   |   55.5   |   65.6   | [config](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_2x.pth) |
 
 
 ## 🔧Installation

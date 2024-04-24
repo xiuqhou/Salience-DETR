@@ -63,6 +63,12 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
 | Salience-DETR | Swin-L<sub>(IN-22K)     | 56.5  |   75.0    |   61.5    |   40.2   |   61.2   |   72.8   |             [配置](configs/salience_detr/salience_detr_swin_l_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)             |
 | Salience-DETR | FocalNet-L<sub>(IN-22K) | 56.8  |   74.7    |   61.7    |   40.1   |   61.1   |   74.3   | [配置](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) |
 
+### 训练24轮
+
+| 模型          | 主干网                  |  AP   | AP<sub>50 | AP<sub>75 | AP<sub>S | AP<sub>M | AP<sub>L |                                                                                                     下载                                                                                                     |
+| ------------- | ----------------------- | :---: | :-------: | :-------: | :------: | :------: | :------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Salience-DETR | ResNet50                | 51.2  |   68.9    |   55.7    |   33.9   |   55.5   |   65.6   |           [配置](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_2x.pth)           |
+
 ## 🔧安装步骤
 
 1. 克隆本仓库：
