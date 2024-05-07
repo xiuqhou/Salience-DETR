@@ -1,6 +1,6 @@
 English | [简体中文](README_cn.md)
 
-**Salience-DETR**: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement  
+**Salience DETR**: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement  
 ===
 
 By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.google.com/citations?user=T07OWMkAAAAJ&hl=zh-CN&oi=ao), Senlin Zhang, [Ping Wei](https://scholar.google.com/citations?user=1OQBtdcAAAAJ&hl=zh-CN&oi=ao), [Badong Chen](https://scholar.google.com/citations?user=mq6tPX4AAAAJ&hl=zh-CN&oi=ao).
@@ -12,13 +12,13 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
 ![GitHub stars](https://img.shields.io/github/stars/xiuqhou/Salience-DETR)
 ![GitHub forks](https://img.shields.io/github/forks/xiuqhou/Salience-DETR)
 
-This repository is an official implementation of the Salience-DETR accepeted to **CVPR 2024** (score **553**).
+This repository is an official implementation of the Salience DETR accepeted to **CVPR 2024** (score **553**).
 
 ## ✨Highlights: 
 
 1. We offer a deepened analysis for [scale bias and query redundancy](#id_1) issues of two-stage DETR-like methods.
 2. We present a hierarchical filtering mechanism to reduce the computational complexity under salience supervision. The proposed salience supervision benefits to capture [fine-grained object contours](#id_2) even with bounding box annotations.
-4. Salience-DETR achieves **+4.0%**, **+0.2%**, and **+4.4%** AP on three challenging defect detection tasks, and comparable performance (**49.2** AP) with about only **70\%** FLOPs on COCO 2017.
+4. Salience DETR achieves **+4.0%**, **+0.2%**, and **+4.4%** AP on three challenging defect detection tasks, and comparable performance (**49.2** AP) with about only **70\%** FLOPs on COCO 2017.
 
 <div align="center">
     <img src="images/Salience-DETR.svg">
@@ -40,34 +40,34 @@ This repository is an official implementation of the Salience-DETR accepeted to 
 
 ## News
 
-`2024-04-19`: Salience-DETR with [FocalNet-Large](https://github.com/microsoft/FocalNet) achieves **56.8 AP** on COCO val2017, [**config**](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) are available!
+`2024-04-19`: Salience DETR with [FocalNet-Large](https://github.com/microsoft/FocalNet) achieves **56.8 AP** on COCO val2017, [**config**](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) are available!
 
-`2024-04-08`: Update [**config**](configs/salience_detr/salience_detr_convnext_l_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth) of Salience-DETR with ConvNeXt-L backbone trained on COCO 2017 (12epoch).
+`2024-04-08`: Update [**config**](configs/salience_detr/salience_detr_convnext_l_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth) of Salience DETR with ConvNeXt-L backbone trained on COCO 2017 (12epoch).
 
-`2024-04-01`: Our Salience-DETR with Swin-L backbone achieves **56.5** AP on COCO 2017 (12epoch). The model [**config**](configs/salience_detr/salience_detr_swin_l_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth) are available.
+`2024-04-01`: Our Salience DETR with Swin-L backbone achieves **56.5** AP on COCO 2017 (12epoch). The model [**config**](configs/salience_detr/salience_detr_swin_l_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth) are available.
 
-`2024-03-26`: We release code of Salience-DETR and pretrained weights on COCO 2017 for Salience-DETR with ResNet50 backbone.
+`2024-03-26`: We release code of Salience DETR and pretrained weights on COCO 2017 for Salience DETR with ResNet50 backbone.
 
-`2024-02-29`: Salience-DETR is accepted in CVPR2024, and code will be released in the repo. Welcome to your attention!
+`2024-02-29`: Salience DETR is accepted in CVPR2024, and code will be released in the repo. Welcome to your attention!
 
 ## Model Zoo
 
-Since accepted to **CVPR 2024**, we have re-trained **Salience-DETR** with **ResNet50** and **Swin-L** under various settings. We provide the corresponding configs and checkpoints for [**COCO 2017**](https://cocodataset.org/#home).
+Since accepted to **CVPR 2024**, we have re-trained **Salience DETR** with **ResNet50** and **Swin-L** under various settings. We provide the corresponding configs and checkpoints for [**COCO 2017**](https://cocodataset.org/#home).
 
 ### 12 epoch setting
 
 | Model         | backbone                |  mAP  | AP<sub>50 | AP<sub>75 | AP<sub>S | AP<sub>M | AP<sub>L |                                                                                                       Download                                                                                                       |
 | ------------- | ----------------------- | :---: | :-------: | :-------: | :------: | :------: | :------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Salience-DETR | ResNet50                | 50.0  |   67.7    |   54.2    |   33.3   |   54.4   |   64.4   |           [config](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth)           |
-| Salience-DETR | ConvNeXt-L              | 54.2  |   72.4    |   59.1    |   38.8   |   58.3   |   69.6   |         [config](configs/salience_detr/salience_detr_convnext_l_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth)         |
-| Salience-DETR | Swin-L<sub>(IN-22K)     | 56.5  |   75.0    |   61.5    |   40.2   |   61.2   |   72.8   |             [config](configs/salience_detr/salience_detr_swin_l_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)             |
-| Salience-DETR | FocalNet-L<sub>(IN-22K) | 56.8  |   74.7    |   61.7    |   40.1   |   61.1   |   74.3   | [config](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) |
+| Salience DETR | ResNet50                | 50.0  |   67.7    |   54.2    |   33.3   |   54.4   |   64.4   |           [config](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth)           |
+| Salience DETR | ConvNeXt-L              | 54.2  |   72.4    |   59.1    |   38.8   |   58.3   |   69.6   |         [config](configs/salience_detr/salience_detr_convnext_l_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth)         |
+| Salience DETR | Swin-L<sub>(IN-22K)     | 56.5  |   75.0    |   61.5    |   40.2   |   61.2   |   72.8   |             [config](configs/salience_detr/salience_detr_swin_l_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)             |
+| Salience DETR | FocalNet-L<sub>(IN-22K) | 56.8  |   74.7    |   61.7    |   40.1   |   61.1   |   74.3   | [config](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) |
 
 ### 24 epoch setting
 
 | Model         | backbone |  mAP  | AP<sub>50 | AP<sub>75 | AP<sub>S | AP<sub>M | AP<sub>L |                                                                                             Download                                                                                             |
 | ------------- | -------- | :---: | :-------: | :-------: | :------: | :------: | :------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Salience-DETR | ResNet50 | 51.2  |   68.9    |   55.7    |   33.9   |   55.5   |   65.6   | [config](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_2x.pth) |
+| Salience DETR | ResNet50 | 51.2  |   68.9    |   55.7    |   33.9   |   55.5   |   65.6   | [config](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [checkpoint](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_2x.pth) |
 
 
 ## 🔧Installation
@@ -306,7 +306,7 @@ If you find our work helpful for your research, please consider citing the follo
 
 ```bibtex
 @inproceedings{hou2024salience,
-  title={Salience-DETR: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement},
+  title={Salience DETR: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement},
   author={Hou, Xiuquan and Liu, Meiqin and Zhang, Senlin and Wei, Ping and Chen, Badong},
   booktitle={CVPR},
   year={2024}

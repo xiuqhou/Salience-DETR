@@ -1,6 +1,6 @@
 简体中文 | [English](README.md)
 
-**Salience-DETR**: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement  
+**Salience DETR**: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement  
 ===
 
 By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.google.com/citations?user=T07OWMkAAAAJ&hl=zh-CN&oi=ao), Senlin Zhang, [Ping Wei](https://scholar.google.com/citations?user=1OQBtdcAAAAJ&hl=zh-CN&oi=ao), [Badong Chen](https://scholar.google.com/citations?user=mq6tPX4AAAAJ&hl=zh-CN&oi=ao).
@@ -12,13 +12,13 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
 ![GitHub stars](https://img.shields.io/github/stars/xiuqhou/Salience-DETR)
 ![GitHub forks](https://img.shields.io/github/forks/xiuqhou/Salience-DETR)
 
-本仓库是**CVPR 2024**（得分**553**）论文Salience-DETR的官方实现.
+本仓库是**CVPR 2024**（得分**553**）论文Salience DETR的官方实现.
 
 ## ✨研究亮点: 
 
 1. 我们深入分析了两阶段DETR类方法中存在的[尺度偏差和查询冗余](id_1)问题。
 2. 我们提出了一种在显著性监督下降低计算复杂度的分层过滤机制，所提出的监督方式甚至能在仅使用检测框标注的情况下捕捉[细粒度的物体轮廓](#id_2)。
-3. Salience-DETR在三个极具挑战的缺陷检测任务上分别提升了 **+4.0%**, **+0.2%** 和 **+4.4%** AP，在COCO 2017上只使用了大约 **70\%** FLOPs 实现了相当的精度。
+3. Salience DETR在三个极具挑战的缺陷检测任务上分别提升了 **+4.0%**, **+0.2%** 和 **+4.4%** AP，在COCO 2017上只使用了大约 **70\%** FLOPs 实现了相当的精度。
 
 <div align="center">
     <img src="images/Salience-DETR.svg">
@@ -40,34 +40,34 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
 
 ## 更新动态
 
-`2024-04-19`: 以 [FocalNet-Large](https://github.com/microsoft/FocalNet) 作为主干网，Salience-DETR在COCO val2017上取得了 **56.8 AP**, [**配置**](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) 已更新!
+`2024-04-19`: 以 [FocalNet-Large](https://github.com/microsoft/FocalNet) 作为主干网，Salience DETR在COCO val2017上取得了 **56.8 AP**, [**配置**](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) 已更新!
 
-`2024-04-08`: 更新以ConvNeXt-L作为主干网、在COCO 2017数据集上训练12轮的Salience-DETR [**配置**](configs/salience_detr/salience_detr_convnext_l_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth).
+`2024-04-08`: 更新以ConvNeXt-L作为主干网、在COCO 2017数据集上训练12轮的Salience DETR [**配置**](configs/salience_detr/salience_detr_convnext_l_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth).
 
-`2024-04-01`: 使用Swin-L作为主干网，Salience-DETR在COCO 2017数据集上取得了 **56.5** AP (训练12轮)。 模型 [**配置**](configs/salience_detr/salience_detr_swin_l_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth) 已发布.
+`2024-04-01`: 使用Swin-L作为主干网，Salience DETR在COCO 2017数据集上取得了 **56.5** AP (训练12轮)。 模型 [**配置**](configs/salience_detr/salience_detr_swin_l_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth) 已发布.
 
-`2024-03-26`: 我们发布了Salience-DETR的代码和在COCO 2017上使用ResNet50作为主干网络的预训练权重。
+`2024-03-26`: 我们发布了Salience DETR的代码和在COCO 2017上使用ResNet50作为主干网络的预训练权重。
 
-`2024-02-29`: Salience-DETR被CVPR2024接受，代码将在本仓库发布。欢迎关注！
+`2024-02-29`: Salience DETR被CVPR2024接受，代码将在本仓库发布。欢迎关注！
 
 ## 模型库
 
-在被 **CVPR 2024** 接受以后, 我们又在多种设置下重新训练了以 **ResNet50** 和 **Swin-L** 作为主干网的 **Salience-DETR** 。我们提供了相应的 [**COCO 2017**](https://cocodataset.org/#home) 数据集的配置和权重。
+在被 **CVPR 2024** 接受以后, 我们又在多种设置下重新训练了以 **ResNet50** 和 **Swin-L** 作为主干网的 **Salience DETR** 。我们提供了相应的 [**COCO 2017**](https://cocodataset.org/#home) 数据集的配置和权重。
 
 ### 训练12轮
 
 | 模型          | 主干网                  |  AP   | AP<sub>50 | AP<sub>75 | AP<sub>S | AP<sub>M | AP<sub>L |                                                                                                     下载                                                                                                     |
 | ------------- | ----------------------- | :---: | :-------: | :-------: | :------: | :------: | :------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Salience-DETR | ResNet50                | 50.0  |   67.7    |   54.2    |   33.3   |   54.4   |   64.4   |           [配置](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth)           |
-| Salience-DETR | ConvNeXt-L              | 54.2  |   72.4    |   59.1    |   38.8   |   58.3   |   69.6   |         [配置](configs/salience_detr/salience_detr_convnext_l_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth)         |
-| Salience-DETR | Swin-L<sub>(IN-22K)     | 56.5  |   75.0    |   61.5    |   40.2   |   61.2   |   72.8   |             [配置](configs/salience_detr/salience_detr_swin_l_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)             |
-| Salience-DETR | FocalNet-L<sub>(IN-22K) | 56.8  |   74.7    |   61.7    |   40.1   |   61.1   |   74.3   | [配置](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) |
+| Salience DETR | ResNet50                | 50.0  |   67.7    |   54.2    |   33.3   |   54.4   |   64.4   |           [配置](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth)           |
+| Salience DETR | ConvNeXt-L              | 54.2  |   72.4    |   59.1    |   38.8   |   58.3   |   69.6   |         [配置](configs/salience_detr/salience_detr_convnext_l_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth)         |
+| Salience DETR | Swin-L<sub>(IN-22K)     | 56.5  |   75.0    |   61.5    |   40.2   |   61.2   |   72.8   |             [配置](configs/salience_detr/salience_detr_swin_l_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth)             |
+| Salience DETR | FocalNet-L<sub>(IN-22K) | 56.8  |   74.7    |   61.7    |   40.1   |   61.1   |   74.3   | [配置](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) |
 
 ### 训练24轮
 
 | 模型          | 主干网                  |  AP   | AP<sub>50 | AP<sub>75 | AP<sub>S | AP<sub>M | AP<sub>L |                                                                                                     下载                                                                                                     |
 | ------------- | ----------------------- | :---: | :-------: | :-------: | :------: | :------: | :------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Salience-DETR | ResNet50                | 51.2  |   68.9    |   55.7    |   33.9   |   55.5   |   65.6   |           [配置](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_2x.pth)           |
+| Salience DETR | ResNet50                | 51.2  |   68.9    |   55.7    |   33.9   |   55.5   |   65.6   |           [配置](configs/salience_detr/salience_detr_resnet50_800_1333.py) / [权重](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_2x.pth)           |
 
 ## 🔧安装步骤
 
@@ -305,7 +305,7 @@ python tools/pytorch2onnx.py \
 
 ```bibtex
 @inproceedings{hou2024salience,
-  title={Salience-DETR: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement},
+  title={Salience DETR: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement},
   author={Hou, Xiuquan and Liu, Meiqin and Zhang, Senlin and Wei, Ping and Chen, Badong},
   booktitle={CVPR},
   year={2024}
