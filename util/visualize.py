@@ -96,15 +96,20 @@ def plot_bounding_boxes_on_image_cv2(
     if len(labels) == 0:
         return image
 
+    # convert to numpy array if given list as input
+    if any(not isinstance(t, np.ndarray) for t in (boxes, labels, scores)):
+        boxes, labels, scores = map(np.array, (boxes, labels, scores))
+    boxes = boxes.astype(np.int32)  # convert to int32, compatible with cv2
+
+    # check input format for boxes, labels, class and scores
     assert len(boxes) == len(labels), "The number of boxes and labels must be equal"
+    assert boxes.shape[-1] == 4, "Boxes must have 4 elements (x1, y1, x2, y2) and x2 > x1, y2 > y1"
     assert classes is None or max(labels) <= len(classes) - 1, "#classes less than label index"
+    assert scores is None or len(scores) == len(labels), "#scores and #labels must be equal"
 
     # filter low confident predictions
     if scores is not None:
-        keep = [s > show_conf for s in scores]
-        boxes = [b for b, k in zip(boxes, keep) if k == True]
-        labels = [l for l, k in zip(labels, keep) if k == True]
-        scores = [s for s, k in zip(scores, keep) if k == True]
+        boxes, labels, scores = map(lambda x: x[scores > show_conf], (boxes, labels, scores))
 
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
@@ -123,7 +128,6 @@ def plot_bounding_boxes_on_image_cv2(
     labels = [classes[i] for i in labels]
 
     # draw bounding boxes filling
-    boxes = np.array(boxes, dtype=np.int32)
     original_image = copy.deepcopy(image)
     image = copy.deepcopy(image)
     for box, color in zip(boxes, colors):
