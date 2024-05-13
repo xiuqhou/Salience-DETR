@@ -81,7 +81,9 @@ def inference():
     accelerator = Accelerator()
     accelerate.utils.set_seed(args.seed, device_specific=False)
     torch.backends.cudnn.benchmark = False
-    torch.use_deterministic_algorithms(True, warn_only=True)
+    torch.backends.cudnn.deterministic = True
+    # deterministic in low version pytorch leads to RuntimeError
+    # torch.use_deterministic_algorithms(True, warn_only=True)
 
     # setup logger
     for logger_name in ["py.warnings", "accelerate", os.path.basename(os.getcwd())]:
@@ -104,7 +106,7 @@ def inference():
         predictions = []
         for index, images in enumerate(tqdm(data_loader)):
             prediction = model(images)[0]
-            
+
             # change torch.Tensor to CPU
             for key in prediction:
                 prediction[key] = prediction[key].to("cpu", non_blocking=True)
