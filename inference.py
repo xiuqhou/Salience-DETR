@@ -1,7 +1,8 @@
 import argparse
 import os
+from functools import partial
 from test import create_test_data_loader
-from typing import Dict
+from typing import Dict, List, Tuple
 
 import accelerate
 import cv2
@@ -118,34 +119,47 @@ def inference():
     # save visualization results
     if args.show_dir:
         os.makedirs(args.show_dir, exist_ok=True)
-        classes = model.CLASSES
-
-        def visualize_single_image(image_name, image, output):
-            # plot bounding boxes on image
-            image = image.numpy().transpose(1, 2, 0)
-            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-            image = plot_bounding_boxes_on_image_cv2(
-                image=image,
-                boxes=output["boxes"],
-                labels=output["labels"],
-                scores=output.get("scores", None),
-                classes=classes,
-                show_conf=args.show_conf,
-                font_scale=args.font_scale,
-                box_thick=args.box_thick,
-                fill_alpha=args.fill_alpha,
-                text_box_color=args.text_box_color,
-                text_font_color=args.text_font_color,
-                text_alpha=args.text_alpha,
-            )
-            cv2.imwrite(os.path.join(args.show_dir, os.path.basename(image_name)), image)
 
         # create a dummy dataset for visualization with multi-workers
         data_loader = create_test_data_loader(
             predictions, accelerator=accelerator, batch_size=1, num_workers=args.workers
         )
-        data_loader.collate_fn = lambda x: visualize_single_image(**x[0])
+        data_loader.collate_fn = partial(_visualize_batch_for_infer, classes=model.CLASSES, **vars(args))
         [None for _ in tqdm(data_loader)]
+
+
+def _visualize_batch_for_infer(
+    batch: Tuple[Dict],
+    classes: List[str],
+    show_conf: float = 0.0,
+    show_dir: str = None,
+    font_scale: float = 1.0,
+    box_thick: int = 3,
+    fill_alpha: float = 0.2,
+    text_box_color: Tuple[int] = (255, 255, 255),
+    text_font_color: Tuple[int] = None,
+    text_alpha: float = 0.5,
+    **kwargs,  # Not useful
+):
+    image_name, image, output = batch[0].values()
+    # plot bounding boxes on image
+    image = image.numpy().transpose(1, 2, 0)
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    image = plot_bounding_boxes_on_image_cv2(
+        image=image,
+        boxes=output["boxes"],
+        labels=output["labels"],
+        scores=output.get("scores", None),
+        classes=classes,
+        show_conf=show_conf,
+        font_scale=font_scale,
+        box_thick=box_thick,
+        fill_alpha=fill_alpha,
+        text_box_color=text_box_color,
+        text_font_color=text_font_color,
+        text_alpha=text_alpha,
+    )
+    cv2.imwrite(os.path.join(show_dir, os.path.basename(image_name)), image)
 
 
 if __name__ == "__main__":
