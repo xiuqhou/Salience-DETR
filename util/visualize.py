@@ -97,8 +97,10 @@ def plot_bounding_boxes_on_image_cv2(
         return image
 
     # convert to numpy array if given list as input
-    if any(not isinstance(t, np.ndarray) for t in (boxes, labels, scores)):
-        boxes, labels, scores = map(np.array, (boxes, labels, scores))
+    if any(not isinstance(t, np.ndarray) for t in (boxes, labels)):
+        boxes, labels = map(np.array, (boxes, labels))
+    if scores is not None and not isinstance(scores, np.ndarray):
+        scores = np.array(scores)
     boxes = boxes.astype(np.int32)  # convert to int32, compatible with cv2
 
     # check input format for boxes, labels, class and scores
