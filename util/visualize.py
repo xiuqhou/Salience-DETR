@@ -1,5 +1,6 @@
 import copy
 import os
+from functools import partial
 from typing import List, Tuple, Union
 
 import cv2
@@ -222,7 +223,7 @@ def visualize_coco_bounding_boxes(
 
     # multi-process on Windows does not support pickle local functions
     # we use functools.partial on global functools to workaround it
-    data_loader.collate_fn = functools.partial(
+    data_loader.collate_fn = partial(
         _visualize_batch_in_coco,
         classes=classes,
         show_conf=show_conf,
