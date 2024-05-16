@@ -5,7 +5,7 @@ import sys
 from torch.utils import data
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-from datasets import CocoDetection
+from datasets.coco import CocoDetection
 from transforms import presets
 from transforms import v2 as T
 from util.collate_fn import collate_fn
