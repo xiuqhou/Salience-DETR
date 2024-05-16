@@ -11,13 +11,17 @@ from torch.nn import functional as F
 from torch.nn.init import constant_, xavier_uniform_
 from torch.utils.cpp_extension import load
 
+_C = None
 if torch.cuda.is_available():
-    _C = load(
-        "MultiScaleDeformableAttention",
-        sources=[f"{os.path.dirname(__file__)}/ops/cuda/ms_deform_attn_cuda.cu"],
-        extra_cflags=["-O2"],
-        verbose=True,
-    )
+    try:
+        _C = load(
+            "MultiScaleDeformableAttention",
+            sources=[f"{os.path.dirname(__file__)}/ops/cuda/ms_deform_attn_cuda.cu"],
+            extra_cflags=["-O2"],
+            verbose=True,
+        )
+    except Exception as e:
+        warnings.warn(f"Failed to load MultiScaleDeformableAttention C++ extension: {e}")
 else:
     warnings.warn("No cuda is available, skip loading MultiScaleDeformableAttention C++ extention")
 
@@ -351,7 +355,7 @@ class MultiScaleDeformableAttention(nn.Module):
             )
 
         # the original impl for fp32 training
-        if torch.cuda.is_available() and value.is_cuda:
+        if _C is not None and value.is_cuda:
             output = MultiScaleDeformableAttnFunction.apply(
                 value.to(torch.float32),
                 spatial_shapes,
