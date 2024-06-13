@@ -1,20 +1,20 @@
 English | [简体中文](README_cn.md)
 
-**Salience DETR**: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement  
+**Salience DETR**: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement
 ===
 
 By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.google.com/citations?user=T07OWMkAAAAJ&hl=zh-CN&oi=ao), Senlin Zhang, [Ping Wei](https://scholar.google.com/citations?user=1OQBtdcAAAAJ&hl=zh-CN&oi=ao), [Badong Chen](https://scholar.google.com/citations?user=mq6tPX4AAAAJ&hl=zh-CN&oi=ao).
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/salience-detr-enhancing-detection-transformer-1/object-detection-on-coco-2017-val)](https://paperswithcode.com/sota/object-detection-on-coco-2017-val?p=salience-detr-enhancing-detection-transformer-1)
 [![arXiv](https://img.shields.io/badge/arXiv-2403.16131-b31b1b.svg)](https://arxiv.org/abs/2403.16131)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com) 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 [![GitHub license](https://img.shields.io/github/license/xiuqhou/Salience-DETR.svg?color=blue)](https://github.com/xiuqhou/Salience-DETR/blob/master/LICENSE)
 ![GitHub stars](https://img.shields.io/github/stars/xiuqhou/Salience-DETR)
 ![GitHub forks](https://img.shields.io/github/forks/xiuqhou/Salience-DETR)
 
 This repository is an official implementation of the Salience DETR accepeted to **CVPR 2024** (score **553**).
 
-## ✨Highlights: 
+## ✨Highlights:
 
 1. We offer a deepened analysis for [scale bias and query redundancy](#id_1) issues of two-stage DETR-like methods.
 2. We present a hierarchical filtering mechanism to reduce the computational complexity under salience supervision. The proposed salience supervision benefits to capture [fine-grained object contours](#id_2) even with bounding box annotations.
@@ -80,14 +80,14 @@ Since accepted to **CVPR 2024**, we have re-trained **Salience DETR** with **Res
     ```
 
 2. Create a conda environment and activate it:
-    
+
     ```shell
     conda create -n salience_detr python=3.8
     conda activate salience_detr
     ```
 
 3. Install PyTorch and Torchvision following the instruction on [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/). The code requires `python>=3.8, torch>=1.11.0, torchvision>=0.12.0`.
-    
+
     ```shell
     conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
     ```
@@ -135,7 +135,7 @@ CUDA_VISIBLE_DEVICES=0 accelerate launch main.py    # train with 1 GPU
 CUDA_VISIBLE_DEVICES=0,1 accelerate launch main.py  # train with 2 GPUs
 ```
 
-Before start training, modify parameters in [`configs/train_config.py`](configs/train_config.py). 
+Before start training, modify parameters in [`configs/train_config.py`](configs/train_config.py).
 
 <details>
 
@@ -181,7 +181,7 @@ model_path = "configs/salience_detr/salience_detr_resnet50_800_1333.py"
 # specify a checkpoint folder to resume, or a pretrained ".pth" to finetune, for example:
 # checkpoints/salience_detr_resnet50_800_1333/train/2024-03-22-09_38_50
 # checkpoints/salience_detr_resnet50_800_1333/train/2024-03-22-09_38_50/best_ap.pth
-resume_from_checkpoint = None  
+resume_from_checkpoint = None
 
 learning_rate = 1e-4  # initial learning rate
 optimizer = optim.AdamW(lr=learning_rate, weight_decay=1e-4, betas=(0.9, 0.999))
@@ -212,7 +212,7 @@ Optional parameters are as follows, see [test.py](test.py) for full parameters:
 To evaluate `salience_detr_resnet50_800_1333` on `coco` using 8 GPUs, save predictions to `result.json` and visualize results to `visualization/`:
 
 ```shell
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch test.py 
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch test.py
     --coco-path data/coco \
     --model-config configs/salience_detr/salience_detr_resnet50_800_1333.py \
     --checkpoint https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_resnet50_800_1333_coco_1x.pth \
@@ -305,10 +305,12 @@ For inference using the ONNX file, see `ONNXDetector` in [`tools/pytorch2onnx.py
 If you find our work helpful for your research, please consider citing the following BibTeX entry or give us a star ⭐.
 
 ```bibtex
-@inproceedings{hou2024salience,
-  title={Salience DETR: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement},
-  author={Hou, Xiuquan and Liu, Meiqin and Zhang, Senlin and Wei, Ping and Chen, Badong},
-  booktitle={CVPR},
-  year={2024}
+@InProceedings{Hou_2024_CVPR,
+    author    = {Hou, Xiuquan and Liu, Meiqin and Zhang, Senlin and Wei, Ping and Chen, Badong},
+    title     = {Salience DETR: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2024},
+    pages     = {17574-17583}
 }
 ```

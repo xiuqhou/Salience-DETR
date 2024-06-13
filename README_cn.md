@@ -1,20 +1,20 @@
 简体中文 | [English](README.md)
 
-**Salience DETR**: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement  
+**Salience DETR**: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement
 ===
 
 By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.google.com/citations?user=T07OWMkAAAAJ&hl=zh-CN&oi=ao), Senlin Zhang, [Ping Wei](https://scholar.google.com/citations?user=1OQBtdcAAAAJ&hl=zh-CN&oi=ao), [Badong Chen](https://scholar.google.com/citations?user=mq6tPX4AAAAJ&hl=zh-CN&oi=ao).
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/salience-detr-enhancing-detection-transformer-1/object-detection-on-coco-2017-val)](https://paperswithcode.com/sota/object-detection-on-coco-2017-val?p=salience-detr-enhancing-detection-transformer-1)
 [![arXiv](https://img.shields.io/badge/arXiv-2403.16131-b31b1b.svg)](https://arxiv.org/abs/2403.16131)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com) 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 [![GitHub license](https://img.shields.io/github/license/xiuqhou/Salience-DETR.svg?color=blue)](https://github.com/xiuqhou/Salience-DETR/blob/master/LICENSE)
 ![GitHub stars](https://img.shields.io/github/stars/xiuqhou/Salience-DETR)
 ![GitHub forks](https://img.shields.io/github/forks/xiuqhou/Salience-DETR)
 
 本仓库是**CVPR 2024**（得分**553**）论文Salience DETR的官方实现.
 
-## ✨研究亮点: 
+## ✨研究亮点:
 
 1. 我们深入分析了两阶段DETR类方法中存在的[尺度偏差和查询冗余](id_1)问题。
 2. 我们提出了一种在显著性监督下降低计算复杂度的分层过滤机制，所提出的监督方式甚至能在仅使用检测框标注的情况下捕捉[细粒度的物体轮廓](#id_2)。
@@ -79,14 +79,14 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
     ```
 
 2. 创建并激活conda环境：
-    
+
     ```shell
     conda create -n salience_detr python=3.8
     conda activate salience_detr
     ```
 
 3. 根据官方步骤 [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/) 安装pytorch。本代码要求 `python>=3.8, torch>=1.11.0, torchvision>=0.12.0`。
-    
+
     ```shell
     conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
     ```
@@ -134,7 +134,7 @@ CUDA_VISIBLE_DEVICES=0 accelerate launch main.py    # 使用1个GPU进行训练
 CUDA_VISIBLE_DEVICES=0,1 accelerate launch main.py  # 使用2个GPU进行训练
 ```
 
-训练之前请调整 [`configs/train_config.py`](configs/train_config.py) 中的参数。 
+训练之前请调整 [`configs/train_config.py`](configs/train_config.py) 中的参数。
 
 <details>
 
@@ -180,7 +180,7 @@ model_path = "configs/salience_detr/salience_detr_resnet50_800_1333.py"
 # 指定一个检查点文件夹来恢复训练，或者指定一个“.pth”文件来进行微调，例如：
 # checkpoints/salience_detr_resnet50_800_1333/train/2024-03-22-09_38_50
 # checkpoints/salience_detr_resnet50_800_1333/train/2024-03-22-09_38_50/best_ap.pth
-resume_from_checkpoint = None  
+resume_from_checkpoint = None
 
 learning_rate = 1e-4  # 初始学习率
 optimizer = optim.AdamW(lr=learning_rate, weight_decay=1e-4, betas=(0.9, 0.999))
@@ -211,7 +211,7 @@ CUDA_VISIBLE_DEVICES=<gpu_ids> accelerate launch test.py --coco-path /path/to/co
 例如，使用8张GPU来在 `coco` 上评估 `salience_detr_resnet50_800_1333` 模型，并将检测结果保存至 `result.json` 文件，并将检测结果的可视化保存至 `visualization/` 文件夹下，请运行以下命令：
 
 ```shell
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch test.py 
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch test.py
     --coco-path data/coco \
     --model-config configs/salience_detr/salience_detr_resnet50_800_1333.py \
     --checkpoint checkpoints/salience_detr_resnet50_800_1333/train/2024-03-22-21_29_56/best_ap.pth \
@@ -304,10 +304,12 @@ python tools/pytorch2onnx.py \
 如果我们的工作对您的研究有帮助，请考虑引用我们的论文或为本仓库点一颗星⭐。
 
 ```bibtex
-@inproceedings{hou2024salience,
-  title={Salience DETR: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement},
-  author={Hou, Xiuquan and Liu, Meiqin and Zhang, Senlin and Wei, Ping and Chen, Badong},
-  booktitle={CVPR},
-  year={2024}
+@InProceedings{Hou_2024_CVPR,
+    author    = {Hou, Xiuquan and Liu, Meiqin and Zhang, Senlin and Wei, Ping and Chen, Badong},
+    title     = {Salience DETR: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2024},
+    pages     = {17574-17583}
 }
 ```
