@@ -32,14 +32,6 @@ body:
         torch._C._GLIBCXX_USE_CXX11_ABI False
         GPU available Yes
         GPU 0 NVIDIA GeForce RTX 3090 (arch=8.6)
-        Driver version 546.17
-        CUDA_HOME /usr/local/cuda-11.3
-        Pillow 10.3.0
-        torchvision 0.13.1+cu113 @/home/ubuntu22/anaconda3/envs/sl/lib/python3.8/site-packages/torchvision
-        torchvision arch flags 3.5, 5.0, 6.0, 7.0, 7.5, 8.0, 8.6
-        fvcore 0.1.5.post20221221
-        iopath 0.1.9
-        cv2 4.9.0
         ```
     validations:
       required: false
