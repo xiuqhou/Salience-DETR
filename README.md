@@ -1,9 +1,7 @@
 English | [简体中文](README_cn.md)
 
-**Salience DETR**: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement
+**Salience DETR**
 ===
-
-By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.google.com/citations?user=T07OWMkAAAAJ&hl=zh-CN&oi=ao), Senlin Zhang, [Ping Wei](https://scholar.google.com/citations?user=1OQBtdcAAAAJ&hl=zh-CN&oi=ao), [Badong Chen](https://scholar.google.com/citations?user=mq6tPX4AAAAJ&hl=zh-CN&oi=ao).
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/salience-detr-enhancing-detection-transformer-1/object-detection-on-coco-2017-val)](https://paperswithcode.com/sota/object-detection-on-coco-2017-val?p=salience-detr-enhancing-detection-transformer-1)
 [![arXiv](https://img.shields.io/badge/arXiv-2403.16131-b31b1b.svg)](https://arxiv.org/abs/2403.16131)
@@ -12,17 +10,23 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
 ![GitHub stars](https://img.shields.io/github/stars/xiuqhou/Salience-DETR)
 ![GitHub forks](https://img.shields.io/github/forks/xiuqhou/Salience-DETR)
 
-This repository is an official implementation of the Salience DETR accepeted to **CVPR 2024** (score **553**).
+This repository is an official implementation of the [Salience DETR: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement](https://openaccess.thecvf.com/content/CVPR2024/html/Hou_Salience_DETR_Enhancing_Detection_Transformer_with_Hierarchical_Salience_Filtering_Refinement_CVPR_2024_paper.html) accepeted to **CVPR 2024** (score **553**). Authors: [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.google.com/citations?user=T07OWMkAAAAJ&hl=zh-CN&oi=ao), Senlin Zhang, [Ping Wei](https://scholar.google.com/citations?user=1OQBtdcAAAAJ&hl=zh-CN&oi=ao), [Badong Chen](https://scholar.google.com/citations?user=mq6tPX4AAAAJ&hl=zh-CN&oi=ao).
 
-## ✨Highlights:
-
-1. We offer a deepened analysis for [scale bias and query redundancy](#id_1) issues of two-stage DETR-like methods.
-2. We present a hierarchical filtering mechanism to reduce the computational complexity under salience supervision. The proposed salience supervision benefits to capture [fine-grained object contours](#id_2) even with bounding box annotations.
-4. Salience DETR achieves **+4.0%**, **+0.2%**, and **+4.4%** AP on three challenging defect detection tasks, and comparable performance (**49.2** AP) with about only **70\%** FLOPs on COCO 2017.
+💖 If our Salience-DETR is helpful to your researches or projects, please star this repository. Thanks! 🤗
 
 <div align="center">
     <img src="images/Salience-DETR.svg">
 </div>
+
+<details>
+
+<summary>✨Highlights</summary>
+
+1. We offer a deepened analysis for [scale bias and query redundancy](#id_1) issues of two-stage DETR-like methods.
+2. We present a hierarchical filtering mechanism to reduce the computational complexity under salience supervision. The proposed salience supervision benefits to capture [fine-grained object contours](#id_2) even with bounding box annotations.
+3. Salience DETR achieves **+4.0%**, **+0.2%**, and **+4.4%** AP on three challenging defect detection tasks, and comparable performance (**49.2** AP) with about only **70\%** FLOPs on COCO 2017.
+
+</details>
 
 <details>
 
@@ -38,21 +42,21 @@ This repository is an official implementation of the Salience DETR accepeted to 
 
 </details>
 
-## News
+## Update
 
-`2024-04-19`: Salience DETR with [FocalNet-Large](https://github.com/microsoft/FocalNet) achieves **56.8 AP** on COCO val2017, [**config**](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) are available!
+- [2024-07-18] We release [Relation-DETR](https://github.com/xiuqhou/Relation-DETR), a general and strong object detection model that achieves ***40+% AP using only 2 epochs*** and suppresses most SOTA methods including [DDQ-DETR](https://github.com/jshilong/DDQ/tree/ddq_detr), [StableDINO](https://github.com/idea-research/stable-dino), [Rank-DETR](https://github.com/LeapLabTHU/Rank-DETR), [MS-DETR](https://github.com/Atten4Vis/MS-DETR). Code and checkpoints are available [here](https://github.com/xiuqhou/Relation-DETR).
 
-`2024-04-08`: Update [**config**](configs/salience_detr/salience_detr_convnext_l_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth) of Salience DETR with ConvNeXt-L backbone trained on COCO 2017 (12epoch).
+- [2024-04-19] Salience DETR with [FocalNet-Large](https://github.com/microsoft/FocalNet) achieves **56.8 AP** on COCO val2017, [**config**](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) are available!
 
-`2024-04-01`: Our Salience DETR with Swin-L backbone achieves **56.5** AP on COCO 2017 (12epoch). The model [**config**](configs/salience_detr/salience_detr_swin_l_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth) are available.
+- [2024-04-08] Update [**config**](configs/salience_detr/salience_detr_convnext_l_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth) of Salience DETR with ConvNeXt-L backbone trained on COCO 2017 (12epoch).
 
-`2024-03-26`: We release code of Salience DETR and pretrained weights on COCO 2017 for Salience DETR with ResNet50 backbone.
+- [2024-04-01] Our Salience DETR with Swin-L backbone achieves **56.5** AP on COCO 2017 (12epoch). The model [**config**](configs/salience_detr/salience_detr_swin_l_800_1333.py) and [**checkpoint**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth) are available.
 
-`2024-02-29`: Salience DETR is accepted in CVPR2024, and code will be released in the repo. Welcome to your attention!
+- [2024-03-26] We release code of Salience DETR and pretrained weights on COCO 2017 for Salience DETR with ResNet50 backbone.
+
+- [2024-02-29] Salience DETR is accepted in CVPR2024, and code will be released in the repo. Welcome to your attention!
 
 ## Model Zoo
-
-Since accepted to **CVPR 2024**, we have re-trained **Salience DETR** with **ResNet50** and **Swin-L** under various settings. We provide the corresponding configs and checkpoints for [**COCO 2017**](https://cocodataset.org/#home).
 
 ### 12 epoch setting
 
@@ -302,7 +306,7 @@ For inference using the ONNX file, see `ONNXDetector` in [`tools/pytorch2onnx.py
 
 ## Reference
 
-If you find our work helpful for your research, please consider citing the following BibTeX entry or give us a star ⭐.
+If you find our work helpful for your research, please consider citing:
 
 ```bibtex
 @InProceedings{Hou_2024_CVPR,
@@ -312,5 +316,13 @@ If you find our work helpful for your research, please consider citing the follo
     month     = {June},
     year      = {2024},
     pages     = {17574-17583}
+}
+
+@inproceedings{hou2024relation,
+  title={Relation DETR: Exploring Explicit Position Relation Prior for Object Detection},
+  author={Hou, Xiuquan and Liu, Meiqin and Zhang, Senlin and Wei, Ping and Chen, Badong and Lan, Xuguang},
+  booktitle={European conference on computer vision},
+  year={2024},
+  organization={Springer}
 }
 ```

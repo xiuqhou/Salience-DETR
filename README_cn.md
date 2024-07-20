@@ -3,8 +3,6 @@
 **Salience DETR**: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement
 ===
 
-By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.google.com/citations?user=T07OWMkAAAAJ&hl=zh-CN&oi=ao), Senlin Zhang, [Ping Wei](https://scholar.google.com/citations?user=1OQBtdcAAAAJ&hl=zh-CN&oi=ao), [Badong Chen](https://scholar.google.com/citations?user=mq6tPX4AAAAJ&hl=zh-CN&oi=ao).
-
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/salience-detr-enhancing-detection-transformer-1/object-detection-on-coco-2017-val)](https://paperswithcode.com/sota/object-detection-on-coco-2017-val?p=salience-detr-enhancing-detection-transformer-1)
 [![arXiv](https://img.shields.io/badge/arXiv-2403.16131-b31b1b.svg)](https://arxiv.org/abs/2403.16131)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
@@ -12,17 +10,23 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
 ![GitHub stars](https://img.shields.io/github/stars/xiuqhou/Salience-DETR)
 ![GitHub forks](https://img.shields.io/github/forks/xiuqhou/Salience-DETR)
 
-本仓库是**CVPR 2024**（得分**553**）论文Salience DETR的官方实现.
+本仓库是**CVPR 2024**（得分**553**）论文[Salience DETR: Enhancing Detection Transformer with Hierarchical Salience Filtering Refinement](https://openaccess.thecvf.com/content/CVPR2024/html/Hou_Salience_DETR_Enhancing_Detection_Transformer_with_Hierarchical_Salience_Filtering_Refinement_CVPR_2024_paper.html)的官方实现. 作者：[Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.google.com/citations?user=T07OWMkAAAAJ&hl=zh-CN&oi=ao), Senlin Zhang, [Ping Wei](https://scholar.google.com/citations?user=1OQBtdcAAAAJ&hl=zh-CN&oi=ao), [Badong Chen](https://scholar.google.com/citations?user=mq6tPX4AAAAJ&hl=zh-CN&oi=ao).
 
-## ✨研究亮点:
+💖 如果我们的Salience-DETR有帮到您的研究或项目，请为本仓库点颗star，谢谢！🤗
+
+<div align="center">
+    <img src="images/Salience-DETR.svg">
+</div>
+
+<details>
+
+<summary>✨研究亮点</summary>
 
 1. 我们深入分析了两阶段DETR类方法中存在的[尺度偏差和查询冗余](id_1)问题。
 2. 我们提出了一种在显著性监督下降低计算复杂度的分层过滤机制，所提出的监督方式甚至能在仅使用检测框标注的情况下捕捉[细粒度的物体轮廓](#id_2)。
 3. Salience DETR在三个极具挑战的缺陷检测任务上分别提升了 **+4.0%**, **+0.2%** 和 **+4.4%** AP，在COCO 2017上只使用了大约 **70\%** FLOPs 实现了相当的精度。
 
-<div align="center">
-    <img src="images/Salience-DETR.svg">
-</div>
+</details>
 
 <details>
 
@@ -40,15 +44,17 @@ By [Xiuquan Hou](https://github.com/xiuqhou), [Meiqin Liu](https://scholar.googl
 
 ## 更新动态
 
-`2024-04-19`: 以 [FocalNet-Large](https://github.com/microsoft/FocalNet) 作为主干网，Salience DETR在COCO val2017上取得了 **56.8 AP**, [**配置**](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) 已更新!
+- [2024-07-18] 我们发布了[Relation-DETR](https://github.com/xiuqhou/Relation-DETR)，一个通用且强大的目标检测模型，只需要**2个epoch即可在COCO上达到40+%的AP**，性能超越[DDQ-DETR](https://github.com/jshilong/DDQ/tree/ddq_detr), [StableDINO](https://github.com/idea-research/stable-dino), [Rank-DETR](https://github.com/LeapLabTHU/Rank-DETR), [MS-DETR](https://github.com/Atten4Vis/MS-DETR)等大多数SOTA方法。代码和权重[在此](https://github.com/xiuqhou/Relation-DETR)。
 
-`2024-04-08`: 更新以ConvNeXt-L作为主干网、在COCO 2017数据集上训练12轮的Salience DETR [**配置**](configs/salience_detr/salience_detr_convnext_l_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth).
+- [2024-04-19] 以 [FocalNet-Large](https://github.com/microsoft/FocalNet) 作为主干网，Salience DETR在COCO val2017上取得了 **56.8 AP**, [**配置**](configs/salience_detr/salience_detr_focalnet_large_lrf_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_focalnet_large_lrf_800_1333_coco_1x.pth) 已更新!
 
-`2024-04-01`: 使用Swin-L作为主干网，Salience DETR在COCO 2017数据集上取得了 **56.5** AP (训练12轮)。 模型 [**配置**](configs/salience_detr/salience_detr_swin_l_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth) 已发布.
+- [2024-04-08] 更新以ConvNeXt-L作为主干网、在COCO 2017数据集上训练12轮的Salience DETR [**配置**](configs/salience_detr/salience_detr_convnext_l_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_convnext_l_800_1333_coco_1x.pth).
 
-`2024-03-26`: 我们发布了Salience DETR的代码和在COCO 2017上使用ResNet50作为主干网络的预训练权重。
+- [2024-04-01] 使用Swin-L作为主干网，Salience DETR在COCO 2017数据集上取得了 **56.5** AP (训练12轮)。 模型 [**配置**](configs/salience_detr/salience_detr_swin_l_800_1333.py) 和 [**权重**](https://github.com/xiuqhou/Salience-DETR/releases/download/v1.0.0/salience_detr_swin_l_800_1333_coco_1x.pth) 已发布.
 
-`2024-02-29`: Salience DETR被CVPR2024接受，代码将在本仓库发布。欢迎关注！
+- [2024-03-26] 我们发布了Salience DETR的代码和在COCO 2017上使用ResNet50作为主干网络的预训练权重。
+
+- [2024-02-29] Salience DETR被CVPR2024接受，欢迎关注！
 
 ## 模型库
 
@@ -301,7 +307,7 @@ python tools/pytorch2onnx.py \
 
 ## 引用
 
-如果我们的工作对您的研究有帮助，请考虑引用我们的论文或为本仓库点一颗星⭐。
+如果我们的工作对您的研究有帮助，请考虑引用下面论文。
 
 ```bibtex
 @InProceedings{Hou_2024_CVPR,
@@ -311,5 +317,13 @@ python tools/pytorch2onnx.py \
     month     = {June},
     year      = {2024},
     pages     = {17574-17583}
+}
+
+@inproceedings{hou2024relation,
+  title={Relation DETR: Exploring Explicit Position Relation Prior for Object Detection},
+  author={Hou, Xiuquan and Liu, Meiqin and Zhang, Senlin and Wei, Ping and Chen, Badong and Lan, Xuguang},
+  booktitle={European conference on computer vision},
+  year={2024},
+  organization={Springer}
 }
 ```
