@@ -3,10 +3,15 @@ import cv2
 import torch
 
 from transforms import v2 as T
-from transforms.album_transform import RandomShortestSize, RandomSizeCrop
+from transforms.album_transform import RandomSizeCrop
 from transforms.albumentations_warpper import AlbumentationsWrapper
 from transforms.crop import RandomSizeCrop
 from transforms.mix_transform import CachedMixUp, CachedMosaic, MixUp, Mosaic
+
+
+def labels_getter(x):
+    return x[-1]
+
 
 basic = T.Compose([
     T.PILToTensor(),
@@ -29,7 +34,7 @@ lsj = T.Compose([
     T.PILToTensor(),
     T.ConvertImageDtype(torch.float),
     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-    T.SanitizeBoundingBox(labels_getter=lambda x: x[-1]),
+    T.SanitizeBoundingBox(labels_getter=labels_getter),
 ])
 
 lsj_1536 = T.Compose([
@@ -39,7 +44,7 @@ lsj_1536 = T.Compose([
     T.PILToTensor(),
     T.ConvertImageDtype(torch.float),
     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-    T.SanitizeBoundingBox(labels_getter=lambda x: x[-1]),
+    T.SanitizeBoundingBox(labels_getter=labels_getter),
 ])
 
 scales = [480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800]
@@ -65,7 +70,7 @@ detr = T.Compose([
     T.PILToTensor(),
     T.ConvertImageDtype(torch.float),
     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-    T.SanitizeBoundingBox(labels_getter=lambda x: x[-1]),
+    T.SanitizeBoundingBox(labels_getter=labels_getter),
 ])
 
 ssd = T.Compose([
@@ -76,7 +81,7 @@ ssd = T.Compose([
     T.PILToTensor(),
     T.ConvertImageDtype(torch.float),
     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-    T.SanitizeBoundingBox(labels_getter=lambda x: x[-1]),
+    T.SanitizeBoundingBox(labels_getter=labels_getter),
 ])
 
 ssdlite = T.Compose([
@@ -85,7 +90,7 @@ ssdlite = T.Compose([
     T.PILToTensor(),
     T.ConvertImageDtype(torch.float),
     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-    T.SanitizeBoundingBox(labels_getter=lambda x: x[-1]),
+    T.SanitizeBoundingBox(labels_getter=labels_getter),
 ])
 
 strong_album = T.Compose([
@@ -142,7 +147,9 @@ strong_album = T.Compose([
                     p=0.1,
                 ),
             ],
-            bbox_params=A.BboxParams(format="pascal_voc", label_fields=["labels"], min_visibility=0.0),
+            bbox_params=A.BboxParams(
+                format="pascal_voc", label_fields=["labels"], min_visibility=0.0
+            ),
         )
     ),
     T.RandomHorizontalFlip(p=0.5),
@@ -150,7 +157,7 @@ strong_album = T.Compose([
     T.PILToTensor(),
     T.ConvertImageDtype(torch.float),
     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-    T.SanitizeBoundingBox(labels_getter=lambda x: x[-1]),
+    T.SanitizeBoundingBox(labels_getter=labels_getter),
 ])
 
 rtdetr_transform = T.Compose([
@@ -162,7 +169,7 @@ rtdetr_transform = T.Compose([
     T.ToImageTensor(),
     T.ConvertImageDtype(torch.float),
     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-    T.SanitizeBoundingBox(labels_getter=lambda x: x[-1]),
+    T.SanitizeBoundingBox(labels_getter=labels_getter),
 ])
 
 # some transform examples related to mosaic, mixup, cached_mosaic and cached_mixup
@@ -173,7 +180,7 @@ mosaic = T.Compose([
     T.PILToTensor(),
     T.ConvertImageDtype(torch.float),
     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-    T.SanitizeBoundingBox(labels_getter=lambda x: x[-1]),
+    T.SanitizeBoundingBox(labels_getter=labels_getter),
 ])
 
 cached_mosaic = T.Compose([
@@ -182,7 +189,7 @@ cached_mosaic = T.Compose([
     T.PILToTensor(),
     T.ConvertImageDtype(torch.float),
     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-    T.SanitizeBoundingBox(labels_getter=lambda x: x[-1]),
+    T.SanitizeBoundingBox(labels_getter=labels_getter),
 ])
 
 mixup = T.Compose([
@@ -208,7 +215,7 @@ mixup_mosaic = T.Compose([
     T.PILToTensor(),
     T.ConvertImageDtype(torch.float),
     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-    T.SanitizeBoundingBox(labels_getter=lambda x: x[-1]),
+    T.SanitizeBoundingBox(labels_getter=labels_getter),
 ])
 
 cached_mixup_mosaic = T.Compose([
@@ -218,7 +225,7 @@ cached_mixup_mosaic = T.Compose([
     T.PILToTensor(),
     T.ConvertImageDtype(torch.float),
     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-    T.SanitizeBoundingBox(labels_getter=lambda x: x[-1]),
+    T.SanitizeBoundingBox(labels_getter=labels_getter),
 ])
 
 mosaic_mixup = T.Compose([
@@ -228,7 +235,7 @@ mosaic_mixup = T.Compose([
     T.PILToTensor(),
     T.ConvertImageDtype(torch.float),
     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-    T.SanitizeBoundingBox(labels_getter=lambda x: x[-1]),
+    T.SanitizeBoundingBox(labels_getter=labels_getter),
 ])
 
 cached_mosaic_mixup = T.Compose([
