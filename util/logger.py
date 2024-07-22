@@ -6,13 +6,9 @@ import re
 import sys
 
 from accelerate.logging import get_logger
-from iopath.common.file_io import HTTPURLHandler, OneDrivePathHandler
-from iopath.common.file_io import PathManager as PathManagerBase
 from termcolor import colored
 
-PathManager = PathManagerBase()
-PathManager.register_handler(HTTPURLHandler())
-PathManager.register_handler(OneDrivePathHandler())
+from util.file_io import PathManager
 
 
 def create_logger(output_dir=None, dist_rank=0):

@@ -13,12 +13,12 @@ import numpy as np
 import torch
 import torchvision
 from accelerate.logging import get_logger
-from fvcore.common.file_io import PathManager
 from torch import Tensor
 from torchvision.models.detection.image_list import ImageList
 
 from util import utils
 from util.collect_env import collect_env_info
+from util.file_io import PathManager
 from util.logger import setup_logger
 
 
@@ -188,7 +188,7 @@ def deepcopy(inputs):
 
 @functools.lru_cache
 def encode_labels(labels: List[str]):
-    """Encode a list of string to a list of int, for example: ["l1", "Label2", "n"] 
+    """Encode a list of string to a list of int, for example: ["l1", "Label2", "n"]
     will be encoded as: [108,  49,  -1,  76,  97,  98, 101, 108,  50,  -1, 110,  -1].
     Each letter will be converted using ord() function in Python.
 
