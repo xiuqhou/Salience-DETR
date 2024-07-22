@@ -46,8 +46,8 @@ def parse_args():
         default="no",
         choices=dynamo_backend,
         help="""
-        Set to one of the possible dynamo backends to optimize the training with torch dynamo. 
-        See https://pytorch.org/docs/stable/torch.compiler.html and 
+        Set to one of the possible dynamo backends to optimize the training with torch dynamo.
+        See https://pytorch.org/docs/stable/torch.compiler.html and
         https://huggingface.co/docs/accelerate/main/en/package_reference/utilities#accelerate.utils.DynamoBackend
         """,
     )
@@ -103,6 +103,7 @@ def train():
     )
     accelerator.init_trackers("det_train")
     default_setup(args, cfg, accelerator)
+    logger = get_logger(os.path.basename(os.getcwd()) + "." + __name__)
 
     # instantiate dataset
     params = dict(num_workers=cfg.num_workers, collate_fn=collate_fn)
@@ -127,35 +128,30 @@ def train():
     optimizer = cfg.optimizer(cfg.param_dicts(model))
     lr_scheduler = cfg.lr_scheduler(optimizer)
 
+    # load from a pretrained weight and fine-tune on it
+    weight_path = getattr(cfg, "resume_from_checkpoint", None)
+    if weight_path is not None and os.path.isfile(weight_path):
+        checkpoint = load_checkpoint(cfg.resume_from_checkpoint)
+        load_state_dict(model, checkpoint)
+        logger.info(f"load pretrained from {cfg.resume_from_checkpoint}")
+
     # register dataset class information into the model, useful for inference
     cat_ids = list(range(max(cfg.train_dataset.coco.cats.keys()) + 1))
     classes = tuple(cfg.train_dataset.coco.cats.get(c, {"name": "none"})["name"] for c in cat_ids)
     model.register_buffer("_classes_", torch.tensor(encode_labels(classes)))
 
-    # log the configerations
-    logger = get_logger(os.path.basename(os.getcwd()) + "." + __name__)
     # prepare for distributed training
     model, optimizer, train_loader, test_loader, lr_scheduler = accelerator.prepare(
         model, optimizer, train_loader, test_loader, lr_scheduler
     )
-    if getattr(cfg, "resume_from_checkpoint", None) is not None:
-        if os.path.isdir(str(cfg.resume_from_checkpoint)):
-            accelerator.load_state(cfg.resume_from_checkpoint)
-            path = os.path.basename(cfg.resume_from_checkpoint)
-            cfg.starting_epoch = int(path.split("_")[-1]) + 1
-            accelerator.project_configuration.iteration = cfg.starting_epoch
-            logger.info(f"resume training of {cfg.output_dir}, from {path}")
-        elif os.path.isfile(str(cfg.resume_from_checkpoint)):
-            checkpoint = load_checkpoint(cfg.resume_from_checkpoint)
-            checkpoint = checkpoint["model"] if "model" in checkpoint else checkpoint
-            load_state_dict(accelerator.unwrap_model(model), checkpoint)
-            # overwrite _classes_ in checkpoint with current datasets categories
-            model.register_buffer("_classes_", torch.tensor(encode_labels(classes)))
-            logger.info(
-                f"load pretrained from {cfg.resume_from_checkpoint}, output_dir is {cfg.output_dir}"
-            )
-        else:
-            logger.warn("resume_from_checkpoint is not a path or a file, skip loading")
+
+    # load from a directory, which means resume training
+    if weight_path is not None and os.path.isdir(weight_path):
+        accelerator.load_state(cfg.resume_from_checkpoint)
+        path = os.path.basename(cfg.resume_from_checkpoint)
+        cfg.starting_epoch = int(path.split("_")[-1]) + 1
+        accelerator.project_configuration.iteration = cfg.starting_epoch
+        logger.info(f"resume training of {cfg.output_dir}, from {path}")
     else:
         n_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
         logger.info("model parameters: {}".format(n_params))
