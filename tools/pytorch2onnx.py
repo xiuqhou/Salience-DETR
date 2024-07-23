@@ -10,6 +10,7 @@ import torch
 from torch import Tensor
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from models.detectors.base_detector import BaseDetector, EvalResize
 from util import utils
 from util.lazy_load import Config
 
@@ -73,10 +74,17 @@ def parse_args():
     return args
 
 
+def set_antialias_to_false(model: BaseDetector):
+    for transform in model.eval_transform:
+        if isinstance(transform, EvalResize):
+            transform.antialias = False
+
+
 def pytorch2onnx():
     # get args from parser
     args = parse_args()
     model = Config(args.model_config).model
+    set_antialias_to_false(model)
     model.eval()
     if args.checkpoint:
         checkpoint = torch.load(args.checkpoint, map_location="cpu")
@@ -125,7 +133,9 @@ def pytorch2onnx():
         err_msg = "The numerical values are different between Pytorch and ONNX"
         err_msg += "But it does not necessarily mean the exported ONNX is problematic."
         for onnx_res, pytorch_res in zip(onnx_results, pytorch_results):
-            np.testing.assert_allclose(onnx_res, pytorch_res, rtol=1e-3, atol=1e-5, err_msg=err_msg)
+            np.testing.assert_allclose(
+                onnx_res, pytorch_res, rtol=1e-3, atol=1e-5, err_msg=err_msg
+            )
         print("The numerical values are the same between Pytorch and ONNX")
 
 
