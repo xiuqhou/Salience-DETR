@@ -67,6 +67,18 @@ class ColorFilter(logging.Filter):
         return True
 
 
+def handle_exception(exc_type, exc_value, exc_traceback):
+    # Catch exception in logger
+    logger = logging.getLogger(os.path.basename(os.getcwd()) + "." + __name__)
+    if issubclass(exc_type, KeyboardInterrupt):
+        sys.__excepthook__(exc_type, exc_value, exc_traceback)
+        return
+    logger.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+
+
+sys.excepthook = handle_exception
+
+
 @functools.lru_cache()  # so that calling setup_logger multiple times won't add many handlers
 def setup_logger(
     output=None,
