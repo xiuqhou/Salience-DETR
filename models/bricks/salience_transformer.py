@@ -397,14 +397,14 @@ class SalienceTransformerEncoderLayer(nn.Module):
 
 
 class SalienceTransformerEncoder(nn.Module):
-    def __init__(self, encoder_layer: nn.Module, num_layers: int = 6):
+    def __init__(self, encoder_layer: nn.Module, num_layers: int = 6, max_num_embedding=200):
         super().__init__()
         self.layers = nn.ModuleList([copy.deepcopy(encoder_layer) for _ in range(num_layers)])
         self.num_layers = num_layers
         self.embed_dim = encoder_layer.embed_dim
 
         # learnt background embed for prediction
-        self.background_embedding = PositionEmbeddingLearned(200, num_pos_feats=self.embed_dim // 2)
+        self.background_embedding = PositionEmbeddingLearned(max_num_embedding, num_pos_feats=self.embed_dim // 2)
 
         self.init_weights()
 
