@@ -90,10 +90,10 @@ This repository is an official implementation of the [Salience DETR: Enhancing D
     conda activate salience_detr
     ```
 
-3. Install PyTorch and Torchvision following the instruction on [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/). The code requires `python>=3.8, torch>=1.11.0, torchvision>=0.12.0`.
+3. Install PyTorch and Torchvision following the instruction on [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/). The code requires `python>=3.8, torch>=1.12.1, torchvision>=0.13.1`.
 
     ```shell
-    conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
+    conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.3 -c pytorch
     ```
 
 4. Install other dependencies with:
